@@ -1,3 +1,5 @@
+////22nd Aug////
+
 //Variables Declarations
 
 /*Create variables
@@ -209,6 +211,8 @@ mul(sum(5,6), 7);//mul(11,7)
 
 */
 
+////31st Aug////
+
 /*Introduction to Arrays, Creating, Accessing - Arrays, Methods in Arrays
 
 //Create an array of fruits and print the elements using a for loop.
@@ -400,5 +404,282 @@ ArrowFunction=()=>
     console.log(this);
 }
 ArrowFunction();
+
+*/
+
+////6th Sep////
+
+// Behind the Scenes: Copying Objects
+/*1. Shallow Copy:
+- Create an object `person1` with properties `name` and `age`.
+- Create a shallow copy `person2` of `person1`.
+- Modify a property in `person2`.
+- Check if the property in `person1` has also changed.
+
+// Creating an object person1
+const person1 = { name: 'Alice', age: 30 };
+
+// Creating a shallow copy of person1
+const person2 = { ...person1 };
+
+// Modifying person2
+person2.age = 35;
+
+console.log(person1.age); // 30 (not affected by person2 change)
+console.log(person2.age); // 35
+*/
+/*2. Deep Copy:
+- Create a function `deepCopy` that recursively copies objects, including nested objects.
+- Test `deepCopy` with an object containing nested objects.
+
+
+function deepCopy(obj) {
+    let copy = Array.isArray(obj) ? [] : {};
+    for (let key in obj) {
+      if (typeof obj[key] === 'object' && obj[key] !== null) {
+        copy[key] = deepCopy(obj[key]);
+      } else {
+        copy[key] = obj[key];
+      }
+    }
+    return copy;
+  }
+  
+  const person3 = { name: 'Bob', details: { age: 40, address: '123 Street' } };
+  const person4 = deepCopy(person3);
+  
+  // Modifying nested property
+  person4.details.age = 45;
+  
+  console.log(person3.details.age); // 40 (not affected)
+  console.log(person4.details.age); // 45
+*/
+  
+// Data Structures and Operators
+/*1. Restaurant Code:
+- Create an object `restaurant` with properties like `name`, `location`, and `menu`.
+- The `menu` property should be an array of objects, each representing a dish with `name`, `price`, and `description`.
+- Use spread operators to create a new menu item.
+- Use JSON.stringify to convert the restaurant object to JSON.
+
+const restaurant = {
+  name: 'The Food Place',
+  location: 'Main Street',
+  menu: [
+    { name: 'Pizza', price: 12, description: 'Cheese and tomato' },
+    { name: 'Burger', price: 8, description: 'Beef with lettuce' }
+  ]
+};
+
+// Adding a new item using spread operator
+const newDish = { ...restaurant.menu[0], name: 'Pasta', price: 10, description: 'Creamy sauce' };
+restaurant.menu.push(newDish);
+
+// Convert to JSON
+const restaurantJSON = JSON.stringify(restaurant);
+console.log(restaurantJSON);
+
+*/
+/*2. JSON Parameters:
+- Create a function that takes a JSON object as a parameter and logs its properties.
+
+const restaurant = {
+    name: 'The Food Place',
+    location: 'Main Street'
+  };
+  
+  // Convert to JSON
+  const restaurantJSON = JSON.stringify(restaurant);
+function logProperties(jsonObj) {
+    const obj = JSON.parse(jsonObj);
+    for (let key in obj) {
+      console.log(`${key}: ${obj[key]}`);
+    }
+  }
+  
+  logProperties(restaurantJSON);
+*/
+
+//Advance Functions
+/*1. Default Parameters:
+- Create a function that calculates the area of a rectangle, with default values for width and height.
+
+function calculateArea(width = 5, height = 10) {
+    return width * height;
+  }
+  
+  console.log(calculateArea()); // 50
+  console.log(calculateArea(7, 3)); // 21
+  
+*/
+/*2. Pass by Value & Pass by Reference:
+- Demonstrate the difference between passing primitive values and objects by value and reference.
+
+// Pass by value (primitive)
+let x = 10;
+let y = x;
+y = 20;
+console.log(x); // 10 (x is unchanged)
+
+// Pass by reference (object)
+const obj1 = { val: 1 };
+const obj2 = obj1;
+obj2.val = 2;
+console.log(obj1.val); // 2 (obj1 is changed)
+*/
+/*3. Callback Functions:
+- Create a function that takes a callback function as an argument and calls it after a certain delay.
+
+function delayedExecution(callback, delay) {
+    setTimeout(callback, delay);
+  }
+  delayedExecution(() => console.log('Executed after delay'), 2000);
+  
+*/
+
+//Functions Returning Functions
+/*1. Creating Functions:
+- Create a function that returns another function.
+- Test the returned function.
+
+function createMultiplier(factor) {
+    return function (num) {
+      return num * factor;
+    };
+  }
+  
+  const double = createMultiplier(2);
+  console.log(double(5));  // 10
+
+*/
+/*2. call(), apply(), and bind() with Objects:
+- Create an object representing a flight booking with passenger details.
+- Use `call`, `apply`, and `bind` to call methods of the object with different contexts.
+
+const flightBooking = {
+    flightNumber: 'AI101',
+    passengerName: 'John Doe',
+    bookFlight() {
+        console.log(`Booking flight ${this.flightNumber} for ${this.passengerName}`);
+    }
+};
+
+const anotherBooking = {
+    flightNumber: 'BA202',
+    passengerName: 'Jane Smith'
+};
+
+// Using call
+flightBooking.bookFlight.call(anotherBooking); // Output: Booking flight BA202 for Jane Smith
+
+// Using apply
+flightBooking.bookFlight.apply(anotherBooking); // Output: Booking flight BA202 for Jane Smith
+
+// Using bind
+const boundBooking = flightBooking.bookFlight.bind(anotherBooking);
+boundBooking(); // Output: Booking flight BA202 for Jane Smith
+
+*/
+
+//IIFE, Closures, and Self-Executing Functions
+
+/*1. IIFE:
+- Create an IIFE that logs a message to the console.
+
+(function() {
+    console.log('This is an IIFE!');
+})();// Output: This is an IIFE!
+
+*/
+/*2. Self-Executing Functions:
+- Create a self-executing function that initializes a variable.
+
+(function() {
+    let counter = 0;
+    console.log(`Counter initialized to ${counter}`);
+})();// Output: Counter initialized to 0
+
+*/
+/*3. Closures:
+- Demonstrate closure by creating a function that returns a function that remembers a value.
+
+function outerFunction(outerValue) {
+    return function innerFunction(innerValue) {
+        console.log(`Outer: ${outerValue}, Inner: ${innerValue}`);
+    };
+}
+
+const closureExample = outerFunction('Hello');
+closureExample('World'); // Output: Outer: Hello, Inner: World
+
+*/
+
+//Strings
+
+/*1. String Methods:
+- Implement methods like `split`, `join`, `toUpperCase`, `toLowerCase`, `padStart`, `padEnd`, `slice`, `repeat`, `replace`, `trim`, `startsWith`, `endsWith`, and `includes`.
+
+const str = "hello world";
+console.log(str.split(" "));          // ["hello", "world"]
+console.log(str.join("-"));           // "hello-world"
+console.log(str.toUpperCase());       // "HELLO WORLD"
+console.log(str.toLowerCase());       // "hello world"
+console.log(str.padStart(15, "*"));   // "***hello world"
+console.log(str.padEnd(15, "*"));     // "hello world***"
+console.log(str.slice(0, 5));         // "hello"
+console.log(str.repeat(2));           // "hello worldhello world"
+console.log(str.replace("world", "everyone"));  // "hello everyone"
+console.log(str.trim());              // "hello world"
+console.log(str.startsWith("hello")); // true
+console.log(str.endsWith("world"));   // true
+console.log(str.includes("hello"));   // true
+
+*/
+/*2. Examples:
+- Mask a credit card number using `padStart` and `padEnd`.
+function maskCreditCard(cardNumber) {
+    return cardNumber.slice(-4).padStart(cardNumber.length, '*');
+}
+console.log(maskCreditCard('1234567812345678')); // Output: ************5678
+
+
+- Capitalize the first letter of each word in a sentence.
+function capitalizeWords(sentence) {
+    return sentence.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+}
+console.log(capitalizeWords('hello world from code')); // Output: Hello World From Code
+
+- Compare email addresses for equality.
+function compareEmails(email1, email2) {
+    return email1.toLowerCase().trim() === email2.toLowerCase().trim();
+}
+console.log(compareEmails('test@Example.com', 'test@example.com')); // Output: true
+
+*/
+
+//Booleans
+
+/*1. Boolean Methods:
+- Implement methods like `indexOf`, `lastIndexOf`, `startsWith`, `endsWith`, and `includes`.
+
+const text = "JavaScript is awesome";
+
+console.log(text.indexOf("is"));         // 11
+console.log(text.lastIndexOf("is"));     // 11
+console.log(text.startsWith("Java"));    // true
+console.log(text.endsWith("awesome"));   // true
+console.log(text.includes("awesome"));   // true
+
+*/
+/*2. Examples:
+- Check if a string starts or ends with a specific substring.
+const phrase = "The quick brown fox";
+console.log(phrase.startsWith("The")); // true
+console.log(phrase.endsWith("fox"));   // true
+
+- Find the index of a substring within a string.
+const sentence = "Learning JavaScript is fun";
+console.log(sentence.indexOf("JavaScript")); // 9
+console.log(sentence.lastIndexOf("fun"));    // 23
 
 */
